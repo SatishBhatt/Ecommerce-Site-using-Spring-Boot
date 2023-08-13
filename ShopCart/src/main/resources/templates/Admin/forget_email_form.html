@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragment/layout :: headerFragment"></head>
+<body>
+
+
+	<!-- form -->
+	<section class="form-area">
+		<div class="wrapper">
+			<div class="form-wrapper">
+
+				<form action="" th:action="@{/send-otp}" method="post">
+
+					<!-- message box -->
+					<div th:if="${session.message}" class="container">
+
+						<div class="alert alert-danger" role="alert">
+							<span th:text="${session.message}"></span>
+						</div>
+
+						<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+					</div>
+
+					<h2>Your Registered Email</h2>
+
+					<div class="input-group">
+						<input name="email" type="email" required /> <label for="">Enter
+							Your Email Here</label>
+					</div>
+
+					<div class="signup-link">
+						<button class="btn btn-primary" type="submit">Send OTP</button>
+
+						
+
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</section>
+
+
+	<script th:src="@{JS/bootstrap.bundle.min.js}"
+		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+		crossorigin="anonymous"></script>
+</body>
+<script src="js/script.js"></script>
+</html>

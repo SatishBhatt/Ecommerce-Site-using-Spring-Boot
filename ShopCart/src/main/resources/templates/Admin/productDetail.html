@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragment/layout :: headerFragment"></head>
+<body>
+<header th:include="fragment/layout :: navAdminFragment"></header>
+<!-- details -->
+<div class="container">
+  <div class="row my-2">
+    <div class="col-lg-8 mx-auto">
+      <div class="card shadow">
+        <div class="card-header">
+          <h4>Product Detail</h4>
+        </div>
+        <div class="card-body">
+          <span>ID: <span th:text="${detail.id}"></span></span>&nbsp;&nbsp;
+          <p>Bill Number: <span th:text="${detail.billNum}"></span></p>
+          <span>Vendor Type: <span th:text="${detail.vendor.vendortype}"></span></span>&emsp;&emsp;&emsp;&emsp;
+          <span>Payment Mode: <span th:text="${detail.paymentMode.payment}"></span></span>&emsp;&emsp;&emsp;&emsp;
+          <span>Bill Date: <span th:text="${detail.billDate}"></span></span><br>
+          
+          <span>Basic Amount: <span th:text="${detail.basicAmount}"></span></span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+          <span>Tax: <span th:text="${detail.tax}"></span></span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+          <span>Total Amount: <span th:text="${detail.totalAmount}"></span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- product detail form-->
+<div class="container">
+  <div class="row my-2">
+    <div class="col-lg-15 mx-auto">
+      <div class="card shadow">
+        <div class="card-header">
+          <h4>Add items</h4>
+        </div>
+        <div class="card-body p-4">
+          <form method="post" th:object="${productDetail}" th:action="@{/addproductDetail(id=${detail.id})}" id="add_form">
+            <div id="show-item">
+              <div class="row item-row">
+                <input name="id" type="hidden" id="id"/>
+                <div class="col-md-2 mb-3">
+                  <label class="form-label">Product Name</label>
+                  <select  class="form-select" name="productName"  required>
+                  
+                    <option value="" label="Choose Product Name"></option>
+                    <option th:each="pro : ${products}" th:value="${pro.id}" th:text="${pro.productName}"  ></option>
+                  </select>
+                </div>
+                <div class="col-md-1 mb-3">
+                  <label for="quantity" class="form-label">Quantity</label>
+                  <input type="number" th:field="*{quantity}"  class="form-control quantity" name="quantity"  required>
+                </div>
+                <div class="col-md-2 mb-3">
+                  <label for="cost" class="form-label">Cost</label>
+                  <input type="text" th:field="*{cost}" class="form-control cost" name="cost" required>
+                </div>
+                <div class="col-md-1 mb-3">
+                  <label for="tax" class="form-label">Tax</label>
+                  <input type="text" th:field="*{tax}" class="form-control tax" name="tax" required>
+                </div>
+                <div class="col-md-2 mb-3">
+                  <label for="amount" class="form-label">Amount</label>
+                  <input type="text" th:field="*{amount}" class="form-control amount"name="amount"  readonly>
+                </div>
+                <div class="col-md-1 mb-3 mt-4 d-grid">
+                  <button class="btn btn-danger remove-item-btn"><i class="bi bi-dash-circle"></i></button>
+                </div>
+              </div>
+            </div>
+            <div class="text-center mt-3">
+              <button class="btn btn-success add-item-btn"><i class="bi bi-plus-circle"></i> Add Item</button>
+            </div>
+            <div>
+              <input type="submit" value="Add" class="btn btn-primary w-25" id="add_btn">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- table -->
+<div class="container">
+<h3>Purchase</h3>
+		<table class="table table-bordered table-primary">
+			<thead class="table-dark">
+				<tr>
+					<th> Purchase ID</th>
+					<th> Product Name</th>
+					<th> Product Name id</th>
+					<th> Pd ID</th>
+					<th>Quantity</th>
+					<th>Cost</th>
+					<th>Tax</th>
+					<th>Amount</th>
+					<th>Action</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="p :${productDetails}" >
+				
+					<td th:text="${p.purchase.id}"></td>
+					<td th:text="${p.addProduct.productName}"></td>
+						<td th:text="${p.addProduct.id}"></td>
+					<td th:text="${p.id}"></td>
+					<td th:text="${p.quantity}"></td>
+					<td th:text="${p.cost}"></td>
+					<td th:text="${p.tax}"></td>
+					<td th:text="${p.amount}"></td>
+			
+					<td>
+					<a href="#" th:href="@{deleteproductDetail (id=${p.id}, id2=${detail.id})}" class="btn btn-danger"><i class="bi bi-trash-fill"></i></a> 
+				<!--  a href="#" th:href="@{updateproductDetail (id=${p.id}, id2=${detail.id})}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a> 
+					-->
+					</td>
+				</tr>
+				
+			</tbody>
+		</table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    // Counter for generating unique product name IDs
+    var productNameCounter = 1;
+
+    // Add item
+    $('.add-item-btn').click(function(e) {
+      e.preventDefault();
+
+      var itemRow = $('.item-row').first().clone(); // Clone the first item row
+
+      // Clear input values in the cloned row
+      itemRow.find('input').val('');
+
+      // Assign a unique product name ID
+      var productNameId = 'productName' + productNameCounter;
+      itemRow.find('.product-name-select').attr('id', productNameId);
+
+      // Update the 'for' attribute of the corresponding label
+      itemRow.find('label[for="productName"]').attr('for', productNameId);
+
+      // Append the cloned row to the form
+      $('#show-item').append(itemRow);
+
+      // Increment the product name counter
+      productNameCounter++;
+    });
+
+    // Remove item
+    $(document).on('click', '.remove-item-btn', function(e) {
+      e.preventDefault();
+
+      var itemRow = $(this).closest('.item-row');
+
+      // Remove the item row
+      itemRow.remove();
+    });
+
+    // Calculate amount
+    $(document).on('input', '.quantity, .cost, .tax', function() {
+      var quantity = parseFloat($(this).closest('.item-row').find('.quantity').val());
+      var cost = parseFloat($(this).closest('.item-row').find('.cost').val());
+      var tax = parseFloat($(this).closest('.item-row').find('.tax').val());
+
+      if (!isNaN(quantity) && !isNaN(cost) && !isNaN(tax)) {
+        var amount = quantity * cost * (1 + tax / 100);
+        $(this).closest('.item-row').find('.amount').val(amount.toFixed(2));
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

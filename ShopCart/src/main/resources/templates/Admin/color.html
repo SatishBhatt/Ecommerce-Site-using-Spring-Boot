@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+ <head th:include="fragment/layout :: headerFragment"></head>
+  <body>
+   <header th:include="fragment/layout :: navAdminFragment"></header>
+
+<!-- Add Vendor -->
+
+
+
+<div class="container">
+<div class="container">
+		<div class="row my-3">
+			<div class="col-lg-16 mx-auto">
+				<div class="card shadow">
+					<div class="card-header">
+
+		<div class="row ">
+		<h2 class="text-center mb-3">ADD COLOR</h2>
+		<form method="post"  th:object="${color}" th:action="@{addcolor}" class="form-control-sm">
+  <div class="mb-3">
+  
+	<input name="id"   type="hidden" id="id" />
+  
+    <label for="colorName" class="form-label">Color Name</label>
+    <input name="colorName"   type="text" class="form-control" id="colorName"  required>
+    
+
+  
+  </div>
+  <button type="submit" class="btn btn-primary mb-3">ADD</button>
+</form>
+</div></div></div></div></div>
+		<hr>
+		<div class="container">
+		<div class="row my-3">
+			<div class="col-lg-16 mx-auto">
+				<div class="card shadow">
+					<div class="card-header">
+		<h3>List of Colors</h3>
+		</div>
+		<table class="table table-bordered table-primary">
+		<thead class="table-dark">
+		<tr>
+		<th>Colors</th>
+		
+		<th>Actions</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr th:each="color :${colors}">
+		<td th:text="${color.colorName}"></td>
+		
+		
+		<td >
+		<a href="#" th:href="@{deletecolor (id=${color.id} )}"  class="btn btn-danger"><i class="bi bi-trash-fill"></i></a>
+		</td>
+		
+		</tr>
+		</tbody>
+		</table>
+		</div></div></div></div></div>
+	</div>
+
+
+
+
+
+
+
+
+
+
+ 
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+  <script src="js/script.js"></script>
+</html>

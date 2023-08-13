@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragment/layout :: headerFragment"></head>
+<body>
+<header th:include="fragment/layout :: navAdminFragment"></header>
+
+	<!-- Add Product -->
+
+<!-- Add Product -->
+<div class="container">
+		<div class="row my-3">
+			<div class="col-lg-16 mx-auto">
+				<div class="card shadow">
+					<div class="card-header">
+    <div class="container mt-5">
+        <h2 class="text-center mb-3">ADD PAYMENT MODE</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form method="post" th:object="${paymentMode}" th:action="@{addpaymentMode}" class="needs-validation" enctype="multipart/form-data">
+                    <input name="id" type="hidden" id="id" th:value="${true}" />
+
+
+                    <div class="mb-3">
+                        <label for="payment" class="form-label">Mode of Payment</label>
+                        <input th:field="*{payment}" name="payment" type="text" class="form-control" id="payment" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">ADD</button>
+                </form>
+            </div>
+        </div>
+
+</div></div></div></div></div>
+		
+		<hr>
+		<div class="container">
+		<div class="row my-3">
+			<div class="col-lg-16 mx-auto">
+				<div class="card shadow">
+					<div class="card-header">
+		<h3>List of Modes</h3>
+		<table class="table table-bordered table-primary">
+			<thead class="table-dark">
+				<tr>
+					<th>ID</th>
+					<th>Mode Type</th>
+					<th>Action</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="pm :${paymentModes}" >
+				
+					<td th:text="${pm.id}"></td>
+
+					<td th:text="${pm.payment}"></td>
+					<td>
+					<a href="#" th:href="@{deletepaymentMode(id=${pm.id} )}" class="btn btn-danger"><i class="bi bi-trash-fill"></i></a> 
+					
+					</td>
+				</tr>
+				
+			</tbody>
+		</table>
+		</div></div></div></div></div>
+
+	</div>
+
+
+
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+		crossorigin="anonymous">
+		
+	</script>
+</body>
+<script src="js/script.js"></script>
+
+</html>

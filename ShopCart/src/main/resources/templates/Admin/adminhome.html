@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragment/layout :: headerFragment"></head>
+
+<body>
+
+	<header th:include="fragment/layout :: navAdminFragment"></header>
+	<style>
+.navbar-nav .nav-link:hover {
+	color: violet;
+	font-weight: bold;
+}
+</style>
+
+	<!-- sidebar -->
+	<nav class="navbar bg-warning">
+		<div class="container-fluid ">
+
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+				aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="offcanvas offcanvas-start bg-warning" tabindex="-1"
+				id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+				<div class="offcanvas-header">
+					<h5 class="offcanvas-title" id="offcanvasNavbarLabel">ShopCart</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+						aria-label="Close"></button>
+				</div>
+				<div class="offcanvas-body">
+					<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+						<li class="nav-item"><a class="nav-link active"
+							aria-current="page" href="#">DashBoard</a></li>
+						<li class="nav-item"><a class="nav-link"
+							th:href="@{/gotoaddCat}">Add Category</a></li>
+
+						<li class="nav-item"><a class="nav-link"
+							th:href="@{/goProducts}">Add Product</a></li>
+
+						<li class="nav-item"><a class="nav-link"
+							th:href="@{/goVendor}">Add Vender</a></li>
+
+						<li class="nav-item"><a class="nav-link"
+							th:href="@{/goColor}">Add Color</a></li>
+
+						<li class="nav-item"><a class="nav-link"
+							th:href="@{/goBrand}">Add Brand</a></li>
+
+						<li class="nav-item"><a class="nav-link"
+							th:href="@{/goPaymentMode}">Add Payment Modes</a></li>
+
+						<li class="nav-item"><a class="nav-link"
+							th:href="@{/goPurchase}">Purchase</a></li>
+
+						<li class="nav-item"><a class="nav-link"
+							th:href="@{/goStock}">View Stock</a></li>
+
+
+						<li class="nav-item"><a class="nav-link" th:href="@{/logout}">Logout</a>
+						</li>
+
+					</ul>
+
+				</div>
+			</div>
+		</div>
+	</nav>
+
+
+
+
+
+
+	<!-- DashBoard -->
+
+	<div class="container">
+		<div class="row my-3">
+			<div class="col-lg-16 mx-auto">
+				<div class="card shadow">
+					<div class="card-header">
+						<hr>
+						<h2 class="text-center">
+							<mark>ADMIN DASHBOARD</mark>
+						</h2>
+					</div>
+					<div class="card-body">
+						<div class="container">
+							<div class="col-lg-10 mb-4 order-0">
+								<div class="card">
+									<div class="d-flex align-items-end row">
+										<div class="col-sm-6">
+											<div class="card-body">
+												<h5 class="card-title text-primary">
+													Welcome <span th:text="${session.user.name}"></span>
+												</h5>
+												<p class="mb-4">
+													You have done <span class="fw-bold">$$$</span> more sales
+													today. Check your new badge in your profile.
+												</p>
+
+												<a href="j#" class="btn btn-sm btn-outline-primary">View
+													Badges</a>
+											</div>
+										</div>
+										<div class="col-sm-5 text-center text-sm-left">
+											<div class="card-body pb-0 px-0 px-md-4">
+												<img src="../images/man.png" height="140"
+													alt="View Badge User"
+													data-app-dark-img="illustrations/man-with-laptop-dark.png"
+													data-app-light-img="illustrations/man-with-laptop-light.png">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container">
+		<div class="row my-3">
+			<div class="col-lg-16 mx-auto">
+				<div class="card shadow">
+					<div class="card-header">
+
+<div class="row">
+            <div class="col-md-3 grid-margin stretch-card">
+              <div class="card border-0 border-radius-2 bg-success">
+                <div class="card-body">
+                  <div class="d-flex flex-md-column flex-xl-row flex-wrap  align-items-center justify-content-between">
+                    <div class="icon-rounded-inverse-success icon-rounded-lg">
+                      <i class="mdi mdi-arrow-top-right"></i>
+                    </div>
+                    <div class="text-white">
+                      <p class="font-weight-medium mt-md-2 mt-xl-0 text-md-center text-xl-left">Total Sales</p>
+                      <div class="d-flex flex-md-column flex-xl-row flex-wrap align-items-baseline align-items-md-center align-items-xl-baseline">
+                        <h3 class="mb-0 mb-md-1 mb-lg-0 mr-1">$508</h3>
+                        <small class="mb-0">This month</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 grid-margin stretch-card">
+              <div class="card border-0 border-radius-2 bg-info">
+                <div class="card-body">
+                  <div class="d-flex flex-md-column flex-xl-row flex-wrap  align-items-center justify-content-between">
+                    <div class="icon-rounded-inverse-info icon-rounded-lg">
+                      <i class="mdi mdi-basket"></i>
+                    </div>
+                    <div class="text-white">
+                      <p class="font-weight-medium mt-md-2 mt-xl-0 text-md-center text-xl-left">Total Purchases</p>
+                      <div class="d-flex flex-md-column flex-xl-row flex-wrap align-items-baseline align-items-md-center align-items-xl-baseline">
+                        <h3 class="mb-0 mb-md-1 mb-lg-0 mr-1">$387</h3>
+                        <small class="mb-0">This month</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 grid-margin stretch-card">
+              <div class="card border-0 border-radius-2 bg-danger">
+                <div class="card-body">
+                  <div class="d-flex flex-md-column flex-xl-row flex-wrap  align-items-center justify-content-between">
+                    <div class="icon-rounded-inverse-danger icon-rounded-lg">
+                      <i class="mdi mdi-chart-donut-variant"></i>
+                    </div>
+                    <div class="text-white">
+                      <p class="font-weight-medium mt-md-2 mt-xl-0 text-md-center text-xl-left">Total Orders</p>
+                      <div class="d-flex flex-md-column flex-xl-row flex-wrap align-items-baseline align-items-md-center align-items-xl-baseline">
+                        <h3 class="mb-0 mb-md-1 mb-lg-0 mr-1">$161</h3>
+                        <small class="mb-0">This month</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 grid-margin stretch-card">
+              <div class="card border-0 border-radius-2 bg-warning">
+                <div class="card-body">
+                  <div class="d-flex flex-md-column flex-xl-row flex-wrap  align-items-center justify-content-between">
+                    <div class="icon-rounded-inverse-warning icon-rounded-lg">
+                      <i class="mdi mdi-chart-multiline"></i>
+                    </div>
+                    <div class="text-white">
+                      <p class="font-weight-medium mt-md-2 mt-xl-0 text-md-center text-xl-left">Total Growth</p>
+                      <div class="d-flex flex-md-column flex-xl-row flex-wrap align-items-baseline align-items-md-center align-items-xl-baseline">
+                        <h3 class="mb-0 mb-md-1 mb-lg-0 mr-1">$231</h3>
+                        <small class="mb-0">This month</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          
+
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+		crossorigin="anonymous"></script>
+</body>
+<script src="js/script.js"></script>
+</html>

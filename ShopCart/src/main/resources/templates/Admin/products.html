@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragment/layout :: headerFragment"></head>
+<body>
+	<header th:include="fragment/layout :: navAdminFragment"></header>
+
+
+	<!-- Add Product -->
+
+<!-- Add Product -->
+	<div class="container">
+		<div class="row my-3">
+			<div class="col-lg-16 mx-auto">
+				<div class="card shadow">
+					<div class="card-header">
+
+    <div class="container mt-5">
+        <h2 class="text-center mb-3">ADD PRODUCT</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form method="post" th:object="${product}" th:action="@{addPro}" class="needs-validation" enctype="multipart/form-data">
+                    <input name="id" type="hidden" id="id" th:field="*{id}" th:value="${true}" />
+
+                    <div class="row mb-3">
+                        <div class="col-lg-6">
+                            <select th:field="*{addCategory.id}" class="form-select" id="categorySelect" required>
+                                <option value="" label="Choose Category" />
+                                <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.categoryName}"></option>
+                            </select>
+                        </div>
+                        <div class="col-lg-6">
+                            <select th:field="*{color.id}" class="form-select" id="colorSelect" required>
+                                <option value="" label="Choose Color" />
+                                <option th:each="c : ${colors}" th:value="${c.id}" th:text="${c.colorName}"></option>
+                            </select>
+                        </div><br><br>
+                        <div class="col-lg-6">
+                            <select th:field="*{brand.id}" class="form-select" id="brandSelect" required>
+                                <option value="" label="Choose Brand" />
+                                <option th:each="b : ${brands}" th:value="${b.id}" th:text="${b.brandName}"></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="productName" class="form-label">Product Name</label>
+                        <input th:field="*{productName}" name="productName" type="text" class="form-control" id="productName" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="MRP" class="form-label">MRP</label>
+                        <input name="MRP" th:field="*{MRP}" type="text" class="form-control" id="MRP" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="cost" class="form-label">Cost</label>
+                        <input th:field="*{cost}" name="cost" type="text" class="form-control" id="cost" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="discount" class="form-label">Discount</label>
+                        <input th:field="*{discount}" name="discount" type="text" class="form-control" id="discount" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="images" class="form-label">Select Images</label>
+                        <input th:field="*{images}" type="file" name="images"  accept="image/png, image/jpeg"  multiple class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea id="description" th:field="*{description}" name="description" rows="4" class="form-control"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">ADD</button>
+                </form>
+            </div>
+        </div>
+</div></div></div></div></div>
+
+			<div class="container">
+		<div class="row my-3">
+			<div class="col-lg-16 mx-auto">
+				<div class="card shadow">
+					<div class="card-header">
+		
+		<hr>
+		<h3>List of Product</h3>
+		<table class="table table-bordered table-primary">
+			<thead class="table-dark">
+				<tr>
+					<th>ID</th>
+					<th>Image</th>
+					<th>Product Name</th>
+					<th>Color</th>
+					<th>MRP</th>
+					<th>Cost</th>
+					<th>Discount</th>
+					<th>Status</th>
+					<th>Action</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="pro :${products}" >
+				
+					<td th:text="${pro.id}"></td>
+
+
+					<td>  <img th:src="@{'/images/' + ${pro.images}}" alt="First Image" style="width: 100px; height: 100px;"></td>
+              <td th:text="${pro.productName}"></td>
+					<td th:text="${pro.color.colorName}"></td>
+				
+					<td th:text="${pro.MRP}"></td>
+					<td th:text="${pro.cost}"></td>
+					<td th:text="${pro.discount}"></td>
+					<td th:text="${pro.enable}">
+					
+					</td>
+					<td>
+					<a href="#" th:href="@{deletePro (id=${pro.id} )}" class="btn btn-danger"><i class="bi bi-trash-fill"></i></a> 
+					<a href="#" th:href="@{updatePro (id=${pro.id} )}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
+					
+					<input   type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off" checked>
+					<label   for="success-outlined">
+					<a href="#" th:href="@{ActivePro (id=${pro.id} )}"><i class="bi bi-check2-circle"></i></a></label>
+
+					<input   type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off">
+					<label   for="danger-outlined">
+					<a href="#" th:href="@{InActivePro (id=${pro.id} )}" ><i class="bi bi-slash-circle-fill"></i></a></label>
+					
+					</td>
+				</tr>
+				
+			</tbody>
+		</table>
+</div></div></div></div></div>
+	</div>
+
+
+
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+		crossorigin="anonymous">
+		
+	</script>
+</body>
+<script src="js/script.js"></script>
+<script>
+	const checkbox = document.getElementById('enable');
+	const hiddenInput = document.getElementById('enableHidden');
+
+	checkbox.addEventListener('change', function() {
+		hiddenInput.value = checkbox.checked ? 'true' : 'false';
+	});
+</script>
+</html>

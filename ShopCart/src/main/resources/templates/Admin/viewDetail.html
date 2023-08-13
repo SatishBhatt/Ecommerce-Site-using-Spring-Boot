@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragment/layout :: headerFragment"></head>
+<style>
+    .product-image {
+      height: 470px;
+      object-fit: cover;
+    }
+  </style>
+<body>
+<header th:include="fragment/layout :: navAdminFragment"></header>
+
+
+<!-- page -->
+<div class="container my-1">
+  <div class="row">
+    <div class="col-lg-6">
+    <div class="container">
+		<div class="row my-2">
+			<div class="col-lg-16 mx-auto">
+				<div class="card shadow">
+					<div class="card-header">
+      <div class="card">
+        <img th:src="@{'/images/' + ${data.addProduct.images}}" alt="Product Image" class="card-img-top product-image">
+        
+      </div>
+      </div></div></div></div></div>
+      
+    </div>
+    
+    
+    <div class="col-lg-6">
+    <div class="container">
+		<div class="row my-3">
+			<div class="col-lg-16 mx-auto">
+				<div class="card shadow">
+					<div class="card-header">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Product Name: <span th:text="${data.addProduct.productName}"></span></h4>
+          <p class="card-text">Product Color: <span th:text="${data.addProduct.color.colorName}"></span></p>
+          <p class="card-text">Product Brand: <span th:text="${data.addProduct.brand.brandName}"></span></p>
+          <p class="card-text">MRP: <span th:text="${data.addProduct.MRP}"></span></p>
+          <p class="card-text">Discount: <span th:text="${data.addProduct.discount}"></span>_Rs off</p>
+          <p class="card-text">Cost: <span th:text="${data.addProduct.Cost}"></span></p>
+          <h3 class="card-subtitle">Available Quantity: <span th:text="${data.quantity}"></span></h3>
+          <h4 class="card-subtitle">Stock Tax: <span th:text="${data.tax}"></span> %</h4>
+          <h4 class="card-subtitle">Stock Cost: <span th:text="${data.amount}"></span></h4>
+        </div></div></div></div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Include Bootstrap JS -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

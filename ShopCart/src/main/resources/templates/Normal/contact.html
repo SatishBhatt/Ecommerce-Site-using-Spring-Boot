@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+ <head th:include="fragment/layout :: navFragment"></head>
+  <body>
+   <header  th:include="fragment/layout :: navElementFragment"  ></header>
+
+<!-- first banner -->
+    <section id="contact-page-banner"  class="contact-header">
+     <h3>#Let's talk</h3>
+      <p>LEAVE A MESSAGE</p>
+      <p>We love to hear from you!</p>
+    </section>
+
+  <!--detail  -->
+
+  <section id="contact-details" class="padding">
+    <div class="detail">
+        <span>GET IN TOUCH</span>
+        <h2>Visit us or Contact us today</h2>
+        <h3>Head office</h3>
+        <div>
+            <li>
+                <i class="bi bi-geo-alt"></i>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, illum.</p>
+            </li>
+            <li>
+                <i class="bi bi-envelope"></i>
+                <p>Example123@gmail.com</p>
+            </li>
+
+            <li>
+                <i class="bi bi-telephone-fill"></i>
+                <p>xxxxx-xxxxx ,xxxxx-xxxxx</p>
+            </li>
+
+            <li>
+                <i class="bi bi-clock-fill"></i>
+                <p>Mondayto Saturday: 9:00 am - 6:00 pm</p>
+            </li>
+
+
+
+        </div>
+    </div>
+
+    <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3430.7608125813063!2d76.68508527443704!3d30.69700518736043!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390feffecf9e94a1%3A0xd1eb3732056db4f5!2sPisoft%20Informatics%20Pvt%20Ltd.!5e0!3m2!1sen!2sin!4v1684089578811!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </section>
+
+
+  <!-- contact us form -->
+
+  <section id="form-detail">
+<form action="">
+    <span>LEAVE A MESSAGE</span>
+    <h2>We love to hear from you</h2>
+    <input type="text" placeholder="Your Name">
+    <input type="text" placeholder="Email">
+    <input type="text" placeholder="Subject">
+    <textarea name="" id="" cols="30" rows="10"  placeholder="Your message"></textarea>
+    <button>Submit</button>
+</form>
+<div class="people">
+    <div>
+        <img src="/images/p1.png" alt="">
+        <p><span>Aman</span>Senior Marketing Manager<br>phone : +91 xxxxx-xxxxx<br>Email: examlpe@gamil.com</p>
+    </div>
+    <div>
+        <img src="/images/p2.png" alt="">
+        <p><span>Anmol</span>Senior Marketing Manager<br>phone : +91 xxxxx-xxxxx<br>Email: examlpe@gamil.com</p>
+    </div>
+    <div>
+        <img src="/images/p3.png" alt="">
+        <p><span>Mannat</span>Senior Marketing Manager<br>phone : +91 xxxxx-xxxxx<br>Email: examlpe@gamil.com</p>
+    </div>
+</div>
+  </section>
+
+
+
+
+
+
+
+
+
+
+ 
+   <footer  th:include="fragment/layout :: footerFragment"  ></footer>
+  
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+  <script src="js/script.js"></script>
+</html>

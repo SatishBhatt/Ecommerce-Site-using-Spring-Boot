@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+ <head th:include="fragment/layout :: headerFragment"></head>
+  <body>
+         <div th:if="${param.error}" class="alert alert-danger alert-dismissible fade show my-0" role="alert">
+  <strong>Invalid username and Password</strong> 
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+ <div th:if="${param.logout}"class="alert alert-success alert-dismissible fade show my-0" role="alert">
+  <strong>You have been logged out</strong> 
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+ <!-- form -->
+<section class="form-area">
+
+  <div class="wrapper">
+    <div  class="sign-in">
+      
+      <form  th:action="@{/dologin (id=${user.id})}" method="post" action="#" >
+        <h2>Log In</h2>
+        
+      
+        
+
+
+        
+        <div class="input-group">
+          <input name="username" type="text" required />
+          <label  for="">Username</label>
+        </div>
+        <div class="input-group">
+          <input name="password" type="password" required />
+          <label  for="">Password</label>
+        </div>
+        <div class="remember">
+          <label> <input type="checkbox" name="" id="" /> Remember me</label>
+        </div>
+        <button id="sign" type="submit">Log In</button>
+        <div class="signup-link">
+          <p>
+            Don't have an account?
+            <a th:href="@{/signup  }" class="signup-btn-link">Sign Up</a>
+          </p>
+        </div>
+        <div class="social-platform">
+          <p>Or sign in with</p>
+          <div class="social-icons">
+            <a href=""><i class="bi bi-facebook"></i></a>
+            <a href=""><i class="bi bi-google"></i></a>
+            <a href=""><i class="bi bi-twitter"></i></a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>  
+</section>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+  <script src="js/script.js"></script>
+</html>

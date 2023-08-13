@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragment/layout :: headerFragment"></head>
+<body>
+<header th:include="fragment/layout :: navAdminFragment"></header>
+
+<div class="container">
+		<div class="row my-3">
+			<div class="col-lg-16 mx-auto">
+				<div class="card shadow">
+					<div class="card-header">
+<div class="container my-1">
+<h3>Available Stock</h3>
+</div>
+		<table class="table table-bordered table-primary">
+			<thead class="table-dark">
+				<tr>
+					<th>Product Name</th>
+					<th>Product Quantity</th>
+					<th>view</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="s :${addpro}" >
+				
+					<td th:text="${s.addProduct.productName}"></td>
+					<td th:text="${s.quantity}"></td>
+					<td><a href="#" th:href="@{stockview (id=${s.id} )}"  class="btn btn-warning">view</a></td>
+					
+				</tr>
+				
+			</tbody>
+		</table>
+		</div></div></div></div>
+</div>
+
+
+
+
+
+</body>
+</html>
